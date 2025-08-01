@@ -1,178 +1,261 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lujayn Zubi - Portfolio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
     <style>
+      :root {
+        --primary: #6c4dbf;
+        --gradient: linear-gradient(135deg, #8e63f3, #d5aaff);
+        --bg-light: #f9f9f9;
+        --bg-dark: #1e1e2f;
+        --text-light: #2d2d2d;
+        --text-dark: #f0f0f0;
+        --card-light: #ffffff;
+        --card-dark: #2a2a3d;
+        --border-light: #d3c3f3;
+        --border-dark: #3e2a72;
+      }
+
+      [data-theme='light'] {
+        --bg: var(--bg-light);
+        --text: var(--text-light);
+        --card: var(--card-light);
+        --border: var(--border-light);
+      }
+
+      [data-theme='dark'] {
+        --bg: var(--bg-dark);
+        --text: var(--text-dark);
+        --card: var(--card-dark);
+        --border: var(--border-dark);
+      }
+
       body {
-        font-family: Arial, sans-serif;
-        background: #f9f9f9;
-        color: #333;
+        font-family: 'Poppins', sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        margin: 0;
+        padding: 0;
+        line-height: 1.7;
+        font-size: 1.125rem;
+        transition: background 0.3s, color 0.3s;
+      }
+
+      .header {
+        background: var(--gradient);
+        color: white;
         padding: 2rem;
+        text-align: center;
+        position: relative;
       }
-      h1 {
-        color: #2b2b2b;
+
+      .header h1 {
+        font-size: 2.8rem;
+        margin: 0;
       }
+
+      .header p {
+        margin-top: 0.5rem;
+        font-size: 1.2rem;
+      }
+
+      .toggle-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: white;
+        border: none;
+        border-radius: 20px;
+        padding: 0.4rem 1rem;
+        cursor: pointer;
+        font-weight: bold;
+        color: var(--primary);
+        transition: background 0.3s;
+      }
+
+      .container {
+        padding: 2rem;
+        max-width: 960px;
+        margin: auto;
+      }
+
+      h2 {
+        font-size: 2rem;
+        color: var(--primary);
+        border-bottom: 2px solid var(--border);
+        padding-bottom: 0.25rem;
+        margin-top: 2rem;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        color: var(--primary);
+        margin-top: 1rem;
+      }
+
+      h4 {
+        font-size: 1.25rem;
+        margin-top: 1rem;
+        color: var(--primary);
+      }
+
       a {
-        color: #007acc;
+        color: var(--primary);
         text-decoration: none;
       }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
       .project {
-        margin-bottom: 2rem;
-        padding: 1rem;
-        border-left: 4px solid #007acc;
-        background: #fff;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        background: var(--card);
+        padding: 1.5rem;
+        margin-bottom: 2.5rem;
+        border-left: 6px solid var(--primary);
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        transition: box-shadow 0.3s ease;
+      }
+
+      .project:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+      }
+
+      img {
+        max-width: 100%;
+        border-radius: 6px;
+        margin-bottom: 1rem;
+      }
+
+      ul {
+        padding-left: 1.5rem;
+      }
+
+      p {
+        margin: 0.5rem 0 1rem 0;
+      }
+
+      .contact {
+        text-align: center;
+        margin: 2rem 0 4rem;
+        font-size: 1.1rem;
       }
     </style>
   </head>
   <body>
-    <h1>Lujayn Zubi</h1>
-    <p>Software Engineering Student | Aspiring Full-Stack Developer</p>
-
-    <h2>Projects</h2>
-
-    <div class="project">
-      <h3>Project 1: My Wallet App</h3>
-      <p>
-        A personal finance manager built with Java Swing and NetBeans, designed
-        to help users track spending across various categories and view savings
-        progress in a simple desktop interface.
-      </p>
-      <ul>
-        <li>User Authentication.</li>
-        <li>
-          Category-Based Expense Tracking so Each category has its own form and
-          logic to record amounts and descriptions.
-        </li>
-        <li>Savings and Budget Management</li>
-      </ul>
-      <h4>Technologies Used</h4>
-      <ul>
-        <li>Java (Swing for GUI)</li>
-        <li>NetBeans IDE (GUI Form Designer)</li>
-        <li>MySQL</li>
-      </ul>
-      <h4>Screenshots</h4>
-      <img
-        src="images/wallet-login.png"
-        alt="Login Screen"
-        width="100%"
-        style="max-width: 400px; margin-bottom: 1rem"
-      />
-      <img
-        src="images/wallet-dashboard.png"
-        alt="Wallet Dashboard"
-        width="100%"
-        style="max-width: 400px; margin-bottom: 1rem"
-      />
-      <img
-        src="images/wallet-categories.png"
-        alt="Categories"
-        width="100%"
-        style="max-width: 400px; margin-bottom: 1rem"
-      />
+    <div class="header">
+      <button class="toggle-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+      <h1>Lujayn Zubi</h1>
+      <p>Software Engineering Student | Aspiring Full-Stack Developer</p>
     </div>
 
-    <div class="project">
-      <h3>Project 2: Cat Adoption Web-App</h3>
-      <p>
-        A collaborative full-stack Laravel app to help users adopt, view, and
-        manage cats.
-      </p>
-      <h4>My Role & Contributions</h4>
-      <ul>
-        <li>
-          Designed and implemented the UI for viewing individual cat profiles.
-        </li>
-        <li>
-          Developed logic to check if the logged-in user is the cat's owner to
-          prevent unauthorized access to sensitive cat actions.
-        </li>
-        <li>
-          Created the cat edit page for owners to update their cat's
-          information.
-        </li>
-      </ul>
-      <h4>Technologies Used</h4>
-      <ul>
-        <li>Laravel (PHP)</li>
-        <li>Blade Templates</li>
-        <li>Eloquent ORM</li>
-        <li>MySQL</li>
-        <li>Tailwind CSS</li>
-      </ul>
-      <h4>Documentation</h4>
-      <ul>
-        <li>
-          <a href="files/2211845810_TEAM_08_SRS.pdf" target="_blank"
-            >Software Requirements Specification (SRS)</a
-          >
-        </li>
-        <li>
-          <a href="files/TEAM_08_SDD-2211845810.pdf" target="_blank"
-            >Software Design Document (SDD)</a
-          >
-        </li>
-      </ul>
-      <h4>Screenshots</h4>
-      <img
-        src="images/cat-notOwner.png"
-        alt="Cat Profile When Not Owner"
-        width="100%"
-        style="max-width: 750px; margin-bottom: 1rem"
-      />
-      <img
-        src="images/cat-owner.png"
-        alt="Cat Profile When Owner"
-        width="100%"
-        style="max-width: 750px; margin-bottom: 1rem"
-      />
-      <img
-        src="images/cat-edit.png"
-        alt="Cat Edit Page"
-        width="100%"
-        style="max-width: 750px; margin-bottom: 1rem"
-      />
+    <div class="container">
+      <h2>Projects</h2>
+
+      <div class="project">
+        <h3>Project 1: My Wallet App</h3>
+        <p>
+          A personal finance manager built with Java Swing and NetBeans, designed
+          to help users track spending across various categories and view savings
+          progress in a simple desktop interface.
+        </p>
+        <ul>
+          <li>User Authentication.</li>
+          <li>Category-Based Expense Tracking.</li>
+          <li>Savings and Budget Management.</li>
+        </ul>
+        <h4>Technologies Used</h4>
+        <ul>
+          <li>Java (Swing)</li>
+          <li>NetBeans IDE</li>
+          <li>MySQL</li>
+        </ul>
+        <h4>Screenshots</h4>
+        <img src="images/wallet-login.png" alt="Login Screen" />
+        <img src="images/wallet-dashboard.png" alt="Wallet Dashboard" />
+        <img src="images/wallet-categories.png" alt="Categories" />
+      </div>
+
+      <div class="project">
+        <h3>Project 2: Cat Adoption Web-App</h3>
+        <p>
+          A collaborative full-stack Laravel app to help users adopt, view, and
+          manage cats.
+        </p>
+        <h4>My Role & Contributions</h4>
+        <ul>
+          <li>Designed and implemented the cat profile UI.</li>
+          <li>Created ownership access logic for edit/delete actions.</li>
+          <li>Built the cat edit page.</li>
+        </ul>
+        <h4>Technologies Used</h4>
+        <ul>
+          <li>Laravel (PHP)</li>
+          <li>Blade Templates</li>
+          <li>Eloquent ORM</li>
+          <li>MySQL</li>
+          <li>Tailwind CSS</li>
+        </ul>
+        <h4>Documentation</h4>
+        <ul>
+          <li>
+            <a href="files/2211845810_TEAM_08_SRS.pdf" target="_blank">SRS Document</a>
+          </li>
+          <li>
+            <a href="files/TEAM_08_SDD-2211845810.pdf" target="_blank">SDD Document</a>
+          </li>
+        </ul>
+        <h4>Screenshots</h4>
+        <img src="images/cat-notOwner.png" alt="Cat Profile - Not Owner" />
+        <img src="images/cat-owner.png" alt="Cat Profile - Owner" />
+        <img src="images/cat-edit.png" alt="Cat Edit Page" />
+      </div>
+
+      <div class="project">
+        <h3>Project 3: Water Tracker App</h3>
+        <p>
+          A mobile app built with Flutter to help users monitor water intake,
+          set goals, and track progress.
+        </p>
+        <h4>My Role & Contributions</h4>
+        <ul>
+          <li>Average water intake logic.</li>
+          <li>Daily goal editing.</li>
+          <li>Responsive UI with Flutter widgets.</li>
+        </ul>
+        <h4>Technologies Used</h4>
+        <ul>
+          <li>Flutter</li>
+          <li>Dart</li>
+          <li>SharedPreferences</li>
+        </ul>
+        <h4>Screenshots</h4>
+        <img src="images/water-progress.png" alt="Water Progress" />
+        <img src="images/water-account.png" alt="Account Page" />
+      </div>
+
+      <div class="contact">
+        Contact: <a href="mailto:l.zubi@uot.edu.ly">l.zubi@uot.edu.ly</a>
+      </div>
     </div>
 
-    <div class="project">
-      <h3>Project 3: Water Tracker App</h3>
-      <p>
-        A collaborative mobile android app built with Flutter to help users
-        monitor their daily water intake, set goals, and track progress.
-      </p>
-      <h4>My Role & Contributions</h4>
-      <ul>
-        <li>
-          Implemented logic to calculate the user's average daily water intake
-          and display historical data.
-        </li>
-        <li>Allowed users to set a daily hydration goal.</li>
-        <li>Built responsive screens using Flutter widgets.</li>
-      </ul>
-      <h4>Technologies Used</h4>
-      <ul>
-        <li>Flutter</li>
-        <li>Dart</li>
-        <li>SharedPreferences</li>
-      </ul>
-      <h4>Screenshots</h4>
-      <img
-        src="images/water-progress.png"
-        alt="Water statistics Page"
-        width="100%"
-        style="max-width: 200px; margin-bottom: 1rem"
-      />
-      <img
-        src="images/water-account.png"
-        alt="Acount Page"
-        width="100%"
-        style="max-width: 200px; margin-bottom: 1rem"
-      />
-    </div>
+    <script>
+      function toggleTheme() {
+        const root = document.documentElement;
+        const current = root.getAttribute('data-theme');
+        const next = current === 'light' ? 'dark' : 'light';
+        root.setAttribute('data-theme', next);
 
-    <p>Contact: l.zubi@uot.edu.ly</p>
+        const btn = document.querySelector('.toggle-btn');
+        btn.textContent = next === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+      }
+    </script>
   </body>
 </html>
